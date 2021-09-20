@@ -2081,18 +2081,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "TodoListComponent",
   data: function data() {
     return {
+      id: 1,
       todo: "",
-      list: ["todo1", "todo2"]
+      list: []
     };
   },
   methods: {
     addTodo: function addTodo() {
-      this.list.push(this.todo);
+      this.list.push({
+        id: this.id++,
+        text: this.todo,
+        status: "todo"
+      });
       this.todo = "";
+    },
+    doneTodo: function doneTodo(item) {
+      if (item.status === "done") {
+        item.status = "todo";
+      } else {
+        item.status = "done";
+      }
     }
   }
 });
@@ -37693,8 +37712,38 @@ var render = function() {
         ),
         _vm._v(" "),
         _vm._l(_vm.list, function(item) {
-          return _c("ul", [
-            _vm._v("\n            " + _vm._s(item) + "\n        ")
+          return _c("ul", { key: item.id }, [
+            _c(
+              "li",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.doneTodo(item)
+                  }
+                }
+              },
+              [
+                _c("span", [_vm._v("id: " + _vm._s(item.id) + " ")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("status: " + _vm._s(item.status))]),
+                _vm._v(" "),
+                item.status === "done"
+                  ? _c("s", [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(item.text) +
+                          "\n                "
+                      )
+                    ])
+                  : _c("span", [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(item.text) +
+                          "\n                "
+                      )
+                    ])
+              ]
+            )
           ])
         })
       ],
