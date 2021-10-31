@@ -1,0 +1,35 @@
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <BaseButton type="success" size="large" @click="onClickButton"
+      >Button</BaseButton
+    >
+  </div>
+</template>
+
+<script>
+import BaseButton from "./components/BaseButton.vue";
+
+export default {
+  name: "App",
+  components: {
+    BaseButton,
+  },
+  methods: {
+    onClickButton() {
+      alert("Clicked!");
+    },
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
